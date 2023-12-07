@@ -1,3 +1,19 @@
+# Please read
+
+This is a fork of the original gpyfft project. This fork is intended to be used as a submodule in other projects. The setup.py file has been modified to allow for this
+
+## Changes
+
+* setup.py modified to allow for installation into a virtual Conda (Mamba) environment
+  * Requires the installation of clFFT to be done through conda and not globally (e.g. `conda install -c conda-forge clfft`)
+  
+### Note
+
+* The setup is in place to allow for mac builds, but I have not tested it. If you are on a mac and want to use this, please let me know if it works.
+
+### The original README.md file is below.
+
+
 gpyfft
 ======
 
