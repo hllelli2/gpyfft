@@ -8,16 +8,21 @@ system = platform.system()
 
 ## paths settings
 # Linux
-if "Linux" in system:
+if not "Windows" in system:
 
-    CLFFT_DIR = os.getenv("CONDA_PREFIX") # Change to conda name given in argument
-    
-
-    CLFFT_LIB_DIRS = os.path.join(CLFFT_DIR, "lib")
+    CLFFT_DIR = os.getenv("CONDA_PREFIX")  # Change to conda name given in argument
+    assert CLFFT_DIR is not None, "CONDA_PREFIX environment variable not found"
+    CLFFT_LIB_DIRS = [os.path.join(CLFFT_DIR, "lib")]
     CLFFT_INCL_DIRS = [os.path.join(CLFFT_DIR, "include")]
     CL_INCL_DIRS = []
     EXTRA_COMPILE_ARGS = []
     EXTRA_LINK_ARGS = []
+
+    if "Darwin" in system:
+        CLFFT_LIB_DIRS.append(os.path.join(CLFFT_DIR, "lib"))
+        EXTRA_COMPILE_ARGS.append("-stdlib=libc++")
+        EXTRA_LINK_ARGS.append("-stdlib=libc++")
+
 
 else:
     raise AssertionError("Windows and macOS are not supported currently")
