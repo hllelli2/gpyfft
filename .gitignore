@@ -6,3 +6,4 @@ gpyfftlib.cpp
 *.so
 .cache
 .ipynb_checkpoints
+.eggs
